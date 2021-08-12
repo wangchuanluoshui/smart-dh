@@ -1,0 +1,35 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    session:
+      timeout: 9000
+spring:
+  datasource:
+    username: hyn
+    password: hyn1234
+    url: jdbc:mysql://localhost:3306/activiti?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC&nullCatalogMeansCurrent=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #日志的相关配置
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    generate-ddl: true
+    database: mysql
+logging:
+  level:
+    root: info
+#日志的相关配置
+spring.activiti.history-level: full
+spring.activiti.db-history-used: true
+# spring-activiti
+# 自动部署验证设置:true-开启（默认）、false-关闭
+spring.activiti.check-process-definitions: false
+system-bussines:
+  bmpn-file-path: C:\\tmp\\bpmn
+
+

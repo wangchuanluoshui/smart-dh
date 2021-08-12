@@ -1,0 +1,78 @@
+backend/Readme.md
+backend/target/
+backend/!.mvn/*
+backend/!**/src/main/**/target/
+backend/!**/src/test/**/target/
+
+### STS ###
+backend/.apt_generated
+backend/.classpath
+backend/.factorypath
+backend/.project
+backend/.settings
+backend/.springBeans
+backend/.sts4-cache
+
+### IntelliJ IDEA ###
+backend/.idea
+backend/*.iws
+backend/*.iml
+backend/*.ipr
+
+### NetBeans ###
+backend//nbproject/private/
+backend//nbbuild/
+backend//dist/
+backend//nbdist/
+backend//.nb-gradle/
+backend/build/
+backend/!**/src/main/**/build/
+backend/!**/src/test/**/build/
+
+backend/### VS Code ###
+backend/.vscode/
+backend/.mvn/*
+backend/.mvn/wrapper/maven-wrapper.jar
+backend/.mvn/wrapper/maven-wrapper.properties
+backend/.mvn/wrapper/MavenWrapperDownloader.java
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+frontend/**/node_modules
+# roadhog-api-doc ignore
+frontend//src/utils/request-temp.js
+frontend/_roadhog-api-doc
+
+# production
+frontend//dist
+frontend//.vscode
+
+# misc
+frontend/.DS_Store
+frontend/npm-debug.log*
+frontend/yarn-error.log
+
+frontend//coverage
+frontend/.idea
+frontend/yarn.lock
+frontend/package-lock.json
+frontend/*bak
+frontend/.vscode
+
+# visual studio code
+frontend/.history
+frontend/*.log
+frontend/functions/*
+frontend/.temp/**
+
+# umi
+frontend/.umi
+frontend/.umi-production
+
+# screenshot
+frontend/screenshot
+frontend/.firebase
+frontend/.eslintcache
+
+frontend/build

@@ -1,0 +1,23 @@
+server:
+  port: 8762
+zuul:
+  routes:
+    dh-api:
+      path: /dh-api/**
+      service-id: dh-controller
+  ribbon:
+    eager-load:
+      enabled: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
+    instance-id: dh-zuul
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 1
+    lease-expiration-duration-in-seconds: 2
+spring:
+  application:
+    name: dh-zuul
