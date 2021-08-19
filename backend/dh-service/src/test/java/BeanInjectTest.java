@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /*
  * @Classname MyTest
@@ -39,5 +41,22 @@ public class BeanInjectTest {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("test",new Boolean(true));
         System.out.println(jsonObject);
+    }
+
+    @Test
+    public void test02() {
+
+        Map<String,String> map=new HashMap();
+        map.put("1","a1");
+        map.put("2","b2");
+
+
+        Map.Entry<String, String> v = map.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue().equals("b3"))
+                .findAny()
+                .orElse(null);
+
+        System.out.println(v);
     }
 }

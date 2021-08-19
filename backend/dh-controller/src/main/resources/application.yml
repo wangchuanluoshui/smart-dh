@@ -56,6 +56,11 @@ spring:
       max-request-size: 512000  # 请求大小限制为500kb
   application:
     name: dh-controller
+  redis:
+    database: 0
+    host: 192.168.43.129
+    port: 6379
+    password:
 system-bussines:
   bmpn-file-path: C:/tmp/bpmn
 project:

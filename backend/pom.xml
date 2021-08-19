@@ -93,10 +93,9 @@
         <module>dh-fdfs</module>
         <module>dh-amqp</module>
         <module>dh-zookeeper</module>
-        <module>dh-cat</module>
         <module>dh-eureka</module>
         <module>dh-zuul</module>
-        <module>dh-sort</module>
+        <module>dh-auth</module>
     </modules>
     <build>
         <finalName>start-dh</finalName>

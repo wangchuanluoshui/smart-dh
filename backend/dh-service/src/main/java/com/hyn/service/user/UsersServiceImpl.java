@@ -3,9 +3,11 @@ package com.hyn.service.user;
 import com.hyn.common.ICodes;
 import com.hyn.common.IPageResponse;
 import com.hyn.common.PageReponse;
+import com.hyn.pojo.Role;
 import com.hyn.pojo.Users;
 import com.hyn.repository.IRoleRepository;
 import com.hyn.repository.IUserRepository;
+import com.hyn.utils.UuidUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -34,6 +36,15 @@ import java.util.Optional;
  */
 @Service
 public class UsersServiceImpl implements IUsersService {
+
+    private final static String DEFAULT_ROLE_NAME = "employee";
+
+    private final static String DEFAULT_FACE_NAME = "/boy-face.jpg";
+
+    private final static Integer DEFAULT_SEX = 0;
+
+    private final static String DEFAULT_PASSWORD = "123456";
+
 
     @Autowired
     IUserRepository iUserRepository;
@@ -84,7 +95,6 @@ public class UsersServiceImpl implements IUsersService {
     }
 
 
-
     @Override
     public String save(Users users) {
 
@@ -98,7 +108,7 @@ public class UsersServiceImpl implements IUsersService {
             return ICodes.CODE_1003;
         }
         users.setPassword((new BCryptPasswordEncoder()).encode(users.getPassword()));
-        users.setRoleName(iRoleRepository.getOne(users.getRoleId()).getRoleChinaName());
+        users.setRoleName(iRoleRepository.findById(users.getRoleId()).get().getRoleChinaName());
         iUserRepository.save(users);
         return ICodes.CODE_0000;
     }
@@ -152,5 +162,33 @@ public class UsersServiceImpl implements IUsersService {
         iUserRepository.deleteAll(usersList);
         return ICodes.CODE_0000;
     }
+
+    @Override
+    public Users findBySourceTypeAndSourceUuid(String sourceType, String sourceUuid) {
+        Optional<Users> usersOptional = iUserRepository.findBySourceTypeAndSourceUuid(sourceType, sourceUuid);
+        return usersOptional.isPresent() ? usersOptional.get() : null;
+    }
+
+    @Override
+    public Users createDefaultUser() {
+        Users users = new Users();
+        Optional<Role> defaultRole = iRoleRepository.findByRoleFullName(DEFAULT_ROLE_NAME);
+        if (defaultRole.isPresent()) {
+            users.setRoleId(defaultRole.get().getId());
+            users.setRoleName(defaultRole.get().getRoleChinaName());
+        }
+        String uuid = UuidUtil.get16UUID();
+        users.setBirthday(new Date());
+        users.setEmail(uuid + "@qq.com");
+        users.setFacePath(DEFAULT_FACE_NAME);
+        users.setMobile(uuid);
+        users.setNickName(uuid);
+        users.setPassword(DEFAULT_PASSWORD);
+        users.setRealname(uuid);
+        users.setSex(DEFAULT_SEX);
+        users.setUserName(uuid);
+        return users;
+    }
+
 
 }

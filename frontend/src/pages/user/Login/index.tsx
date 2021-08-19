@@ -5,6 +5,7 @@ import {
   TaobaoCircleOutlined,
   UserOutlined,
   WeiboCircleOutlined,
+  GithubOutlined,
 } from '@ant-design/icons';
 import { Alert, Space, message, Tabs } from 'antd';
 import React, { useState } from 'react';
@@ -13,6 +14,7 @@ import { useIntl, Link, history, FormattedMessage, SelectLang, useModel } from '
 import Footer from '@/components/Footer';
 import { login } from '@/services/ant-design-pro/api';
 import { getFakeCaptcha } from '@/services/ant-design-pro/login';
+import { otherSysLogin, RequestResult } from './service';
 
 import styles from './index.less';
 
@@ -46,6 +48,28 @@ const Login: React.FC = () => {
       }));
     }
   };
+
+  const handleClickOtherLogin = async (values: API.OtherSysLoginParams) => {
+    console.log(values)
+    let result: RequestResult;
+    try {
+      console.log(values.sourcesyscode)
+      result = await otherSysLogin(
+        { sourcesyscode: values.sourcesyscode }
+      );
+      if (result.code == '0000') {
+        console.log(result.data)
+        window.open(result.data.authUrl);
+        return true;
+      } else {
+        message.error(result.msg);
+        return false;
+      }
+    } catch (error) {
+      message.error('操作失败请重试！');
+      return false;
+    }
+  }
 
   const handleSubmit = async (values: API.LoginParams) => {
     setSubmitting(true);
@@ -300,9 +324,10 @@ const Login: React.FC = () => {
           </ProForm>
           <Space className={styles.other}>
             <FormattedMessage id="pages.login.loginWith" defaultMessage="其他登录方式" />
-            <AlipayCircleOutlined className={styles.icon} />
-            <TaobaoCircleOutlined className={styles.icon} />
-            <WeiboCircleOutlined className={styles.icon} />
+            <GithubOutlined className={styles.icon} onClick={() => handleClickOtherLogin({ sourcesyscode: "github" })} />
+            <AlipayCircleOutlined className={styles.icon} onClick={() => handleClickOtherLogin({ sourcesyscode: "alipay" })} />
+            <TaobaoCircleOutlined className={styles.icon} onClick={() => handleClickOtherLogin({ sourcesyscode: "taobao" })} />
+            <WeiboCircleOutlined className={styles.icon} onClick={() => handleClickOtherLogin({ sourcesyscode: "weibo" })} />
           </Space>
         </div>
       </div>

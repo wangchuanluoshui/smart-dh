@@ -95,4 +95,9 @@ public class Users extends BaseEntity {
     @Column(name = "role_name")
     private String roleName;
 
+    @Column
+    private String sourceType;
+
+    @Column
+    private String sourceUuid;
 }

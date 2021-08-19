@@ -70,6 +70,10 @@ declare namespace API {
     type?: string;
   };
 
+  type OtherSysLoginParams = {
+    sourcesyscode?: string;
+  };
+
   type ErrorResponse = {
     /** 业务约定的错误码 */
     errorCode: string;

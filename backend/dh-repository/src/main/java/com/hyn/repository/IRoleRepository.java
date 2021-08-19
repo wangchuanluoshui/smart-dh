@@ -1,7 +1,6 @@
 package com.hyn.repository;
 
 import com.hyn.pojo.Role;
-import com.hyn.pojo.Users;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -22,4 +21,6 @@ public interface IRoleRepository extends JpaRepository<Role, String>, JpaSpecifi
     Page<Role> findByRoleChinaName(String roleChinaName, Pageable pageable);
 
     List<Role> findByRoleChinaNameOrRoleFullName(String roleChinaName, String fullName);
+
+    Optional<Role> findByRoleFullName(String roleFullName);
 }

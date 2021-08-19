@@ -21,4 +21,8 @@ public interface IUsersService {
 
     String delete(List<String> userIds);
 
+    Users findBySourceTypeAndSourceUuid(String sourceType,String sourceUuid);
+
+    Users createDefaultUser();
+
 }

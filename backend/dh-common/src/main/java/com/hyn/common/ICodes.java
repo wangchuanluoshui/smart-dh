@@ -87,6 +87,9 @@ public class ICodes {
     @CodeDesc(code = "9980", description = "退出系统成功！")
     public static final String CODE_9980 = "9980";
 
+    @CodeDesc(code = "9979", description = "暂不支持此第三方系统登录！")
+    public static final String CODE_9979 = "9979";
+
     //-- common business code --
     @CodeDesc(code = "1001", description = "该用户已存在！")
     public static final String CODE_1001 = "1001";

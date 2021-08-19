@@ -10,6 +10,7 @@ import com.hyn.fdfs.service.FdfsService;
 import com.hyn.pojo.Users;
 import com.hyn.service.role.IRoleService;
 import com.hyn.utils.MultipartFileToFileUtils;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+
+@Api(value = "base", tags = "系统基础")
 @Controller
 @RequestMapping(value = "/")
 public class BaseController {
